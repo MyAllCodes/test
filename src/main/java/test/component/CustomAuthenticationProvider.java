@@ -17,11 +17,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     
 	@Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        System.out.println("CustomAuthenticationProvider authenticate method called:");
+		System.out.println("authenticate method called");
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-        System.out.println("username : "+username);
-        System.out.println("password : "+password);
         CustomUserDetails user = customUserDetailsService.loadUserByUsername(username);
         if(user!=null&&password.equalsIgnoreCase(user.getPassword())) {
         	return new UsernamePasswordAuthenticationToken(username, password, user.getAuthorities());
@@ -29,10 +27,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         	throw new BadCredentialsException("Authentication failed");
         }
     }
+	
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return true; // Support all types of authentication
+    	System.out.println("support method called");
+        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
 
 }

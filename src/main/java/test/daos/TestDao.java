@@ -26,7 +26,7 @@ public class TestDao {
 	}
 	
 	public UserModel getDataByUsername(String username){
-		String sql="SELECT * FROM user.usermodel where username=?;";
+		String sql="SELECT username,password,roles FROM user.usermodel where username=?;";
 		return jdbcTemplate.queryForObject(sql, new Object[] {username},new BeanPropertyRowMapper<UserModel>(UserModel.class));
 	}
 

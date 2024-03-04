@@ -1,7 +1,9 @@
 package test.beans;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,17 +14,18 @@ public class CustomUserDetails implements UserDetails{
 	
 	private String username;
 	private String password;
-	private List<GrantedAuthority> roles;
+	private Set<GrantedAuthority> roles=new HashSet<GrantedAuthority>();
 	
 	public CustomUserDetails(UserModel user) {
-		super();
-		this.username = user.getUsername();
-		this.password = user.getPassword();
-		String[] roleArray = user.getRoles().split(",");
-		for(String role:roleArray) {
-			roles.add(new SimpleGrantedAuthority(role));
-		}
+	    super();
+	    this.username = user.getUsername();
+	    this.password = user.getPassword();
+	    String role = user.getRoles();
+	    if (role != null) {
+	        roles.add(new SimpleGrantedAuthority(role));
+	    }
 	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return roles;
@@ -50,12 +53,12 @@ public class CustomUserDetails implements UserDetails{
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return username;
+		return password;
 	}
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return password;
+		return username;
 	}
 	
 	

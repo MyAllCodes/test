@@ -1,6 +1,8 @@
 package test.beans;
 
-public class UserModel {
+import java.io.Serializable;
+
+public class UserModel implements Serializable{
 private String username;
 private String password;
 private String roles;

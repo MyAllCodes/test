@@ -9,7 +9,7 @@ spring:
       ddl-auto: update
 server:
   ssl:
-    key-store: D:/projects/test/keystore.jks
+    key-store: D:\projects\test\keystore.jks
     key-store-password: password
     keyAlias: mykey
     key-store-type: JKS
