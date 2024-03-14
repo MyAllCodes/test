@@ -1,18 +1,18 @@
 spring:
-  security:
-    user:
-      name: user
-      password: 123
-      roles:      - USER
+#  security:
+#    user:
+#      name: user
+#      password: 123
+#      roles:#      - USER
   jpa:    database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       ddl-auto: update
 server:
   ssl:
-    key-store: D:/Jforce-workspace/test/keystore.jks
+    key-store: D:\projects\test\keystore.jks
     key-store-password: password
     keyAlias: mykey
     key-store-type: JKS
   port: 443
-  servlet:
-    context-path: /api
+spring.mvc.view.prefix: /WEB-INF/jsp/
+spring.mvc.view.suffix: .jsp
